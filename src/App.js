@@ -9,6 +9,7 @@ import MyItems from './Pages/MyItems/MyItems';
 import AddItem from './Pages/AddItem/AddItem';
 import NotFound from './Pages/Shared/NotFound/NotFound';
 import ManageItem from './Pages/ManageItem/ManageItem';
+import ManageItems from './Pages/ManageItem/ManageItems';
 
 function App() {
   return (
@@ -22,6 +23,7 @@ function App() {
           <Route path='/myitems' element={<MyItems/>}/>
           <Route path='/additem' element={<AddItem/>}/>
           <Route path='/manageitem/:id' element={<ManageItem/>}/>
+          <Route path='/manageitems' element={<ManageItems/>}/>
           <Route path='*' element={<NotFound/>}/>
        </Routes>
     </div>

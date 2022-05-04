@@ -1,0 +1,43 @@
+.card{
+    border: none;
+    box-shadow: rgba(0, 0, 0, 0.08) 0px 4px 12px;
+}
+.card-title{
+    color: #647b64;
+}
+.btn{
+    color: white;    
+    background: linear-gradient(102.3deg, #647B64 -4.62%, #66AC66 178.22%), linear-gradient(102.3deg, #0BB1E3 -4.62%, #0F2976 178.22%), #0E70AF;
+    border:2px solid #647B64;
+    font-weight: 500;
+}
+.btn:hover{
+    background: white ;    
+    color: #647B64 !important;
+    border: 2px solid #647B64;
+
+}
+.deliver-btn{
+    background: #363062;
+    color: aliceblue;
+    border: 2px solid #363062;
+    font-weight: 500;
+}
+.deliver-btn:hover{
+    background:aliceblue ;
+    color:  #363062;
+    border: 2px solid #363062;
+}
+.myitems-link{
+    color: #363062;
+    text-decoration: none;
+    border: 2px solid #363062;
+    font-weight: 500;
+    
+}
+.myitems-link:hover{
+    color: #647b64;
+    text-decoration: none;
+    border: 2px solid #647b64;
+    
+}
