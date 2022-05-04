@@ -1,8 +1,12 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import './Item.css'
 
 const Item = ({item}) => {
+    const navigate = useNavigate()
+    const navigateToPage = (id) =>{
+        navigate(`/manageitem/${id}`)
+    }
     return (
         <div class="col">
             <div class="card h-100 p-2">
@@ -13,7 +17,7 @@ const Item = ({item}) => {
                             <span>Brand: {item.company}</span> <br />
                             <span>Quantity: {item.quantity}</span>
                         </p>
-                        <Link className='btn' to='/manageitem'>Stock Update</Link>
+                        <button className='btn' onClick={()=>navigateToPage(item._id)}>Stock Update</button>
                     </div>
             </div>
         </div>
