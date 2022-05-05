@@ -24,6 +24,7 @@ function App() {
           <Route path='/additem' element={<AddItem/>}/>
           <Route path='/manageitem/:id' element={<ManageItem/>}/>
           <Route path='/manageitems' element={<ManageItems/>}/>
+          <Route path='/additem' element={<AddItem/>}/>
           <Route path='*' element={<NotFound/>}/>
        </Routes>
     </div>
