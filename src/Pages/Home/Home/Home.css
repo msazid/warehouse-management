@@ -1,0 +1,32 @@
+.hero-section{
+    background-image: url('../../../Assets/Image/hero-banner.jpg');
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    height: 85vh;
+    background-color: rgba(0, 0, 0, 0.6);
+    background-blend-mode: overlay;
+}
+.text-color{
+    color:#647b64;
+}
+
+.banner-text{
+    text-align: center;
+}
+.btn-banner{
+    color: whitesmoke;
+    background: none;
+    border: 2px solid whitesmoke;
+    font-weight: 500;
+    padding: 5px;
+    text-decoration: none;
+    transition: .3s all;
+}
+.btn-banner:hover{
+    color: white; 
+    background-color: #647b64;
+    border: 2px solid #647b64;
+    transition: .3s all;
+
+}

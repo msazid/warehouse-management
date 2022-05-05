@@ -83,7 +83,9 @@ const ManageItem = () => {
                             <div className="card-body">
                                 <h5 className="card-title">{detail.name}</h5>
                                 <p className="card-text text-start">{detail.description}</p>
-                                <p className="card-text text-start"><strong>Quantity:</strong> {detail.quantity} <span className="text-muted">piece</span></p>
+                                <p className="card-text text-start">
+                                <span className="card-text text-start"><strong>Brand:</strong> {detail.company}</span> <br />
+                                    <strong>Quantity:</strong> {detail.quantity} <span className="text-muted">piece</span></p>
 
                                 <div className='d-flex justify-content-center'>
                                     <div className='d-flex'>
