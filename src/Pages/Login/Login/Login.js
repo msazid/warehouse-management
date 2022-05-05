@@ -1,7 +1,10 @@
 import React from 'react';
 import GoogleButton from 'react-google-button';
+import { Link } from 'react-router-dom';
 import deliveryPic from '../../../Assets/Image/delivery.jpg'
+import auth from '../../../Firebase/Firebase.init';
 const Login = () => {
+    
     return (
         <div>
             <div className="row container w-75 mx-auto my-3">
@@ -21,8 +24,9 @@ const Login = () => {
                                 <span className='text-start'>Password</span>
                                 <input type="password" class="form-control" id="exampleInputPassword1" />
                             </div>
-                            <span>Forget your password ?</span>
+                            <span className='d-block mb-3'>Forget your password ?</span>
                             <button type="submit" class="btn w-100">Login</button>
+                          <p className='mt-3'>New here please<Link className='ms-2' to='/register'>Register</Link></p> 
                         </form>
                         <h4 className='text-center my-3'>Or</h4>
                         <GoogleButton className='w-100'
