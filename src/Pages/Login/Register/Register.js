@@ -6,20 +6,31 @@ const Register = () => {
     return (
         <div>
             <div className="row container w-75 mx-auto my-3">
-                <div className="col-12 col-md-6 d-flex align-items-center">
+                <div className="col-12 col-md-8 mx-auto">
                     <div className='w-100'>
                         <form className='w-100 h-75'>
-                            <h3>Login</h3>
+                            <h3>Register New User</h3>
                             <div class="my-3">
-                                <span className="text-start">Email</span>
-                                <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" />
+                                <span className="text-start">Name</span>
+                                <input type="text" name='name' class="form-control" aria-describedby="nameHelp" />
                             </div>
                             <div class="mb-3">
-                                <span className='text-start'>Password</span>
-                                <input type="password" class="form-control" id="exampleInputPassword1" />
+                                <span className="text-start">User Name</span>
+                                <input type="text" name='username' class="form-control" aria-describedby="userNameHelp" />
                             </div>
-                            <span className='d-block mb-3'>Forget your password ?</span>
-                            <button type="submit" class="btn w-100">Login</button>
+                            <div class="mb-3">
+                                <span className="text-start">Email</span>
+                                <input type="email" name='email' class="form-control" aria-describedby="emailHelp" />
+                            </div>
+                            <div class="mb-3">
+                                <span className='text-start'>New Password</span>
+                                <input type="password" name='password' class="form-control"/>
+                            </div>
+                            <div class="mb-3">
+                                <span className='text-start'>Confirm Password</span>
+                                <input type="password" name='password' class="form-control"/>
+                            </div>
+                            <button type="submit" class="btn w-100">Register</button>
                           <p className='mt-3'>Already have an account<Link className='ms-2' to='/login'>Login</Link></p> 
                         </form>
                         <h4 className='text-center my-3'>Or</h4>
@@ -28,9 +39,6 @@ const Register = () => {
                         />
 
                     </div>
-                </div>
-                <div className="col-12 col-md-6">
-                    <img className='img-fluid' alt="" />
                 </div>
             </div>
         </div>
