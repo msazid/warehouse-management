@@ -10,7 +10,7 @@ const ManageItem = () => {
         fetch(url)
             .then(res => res.json())
             .then(data => setDetail(data))
-    }, []);
+    },[]);
     const handleDeliver = () => {
         let deliver = 1;
         let quantityNumber = parseInt(detail.quantity)
