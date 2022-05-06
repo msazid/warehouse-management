@@ -1,14 +1,16 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
 
-const AllItemShow = ({ item }) => {
+const MyItem = ({item,deleteItem}) => {
+
     const navigate = useNavigate()
     const navigateToPage = (id) => {
         navigate(`/manageitem/${id}`)
     }
+
     return (
-        <>
-            <div className="col">
+        <div>
+                <div className="col">
                 <div className="card h-100 p-2">
                     <img src={item.picture} className="card-img-top w-50 h-50 mx-auto" alt="..." />
                     <div className="card-body">
@@ -21,8 +23,8 @@ const AllItemShow = ({ item }) => {
                     </div>
                 </div>
             </div>
-        </>
+        </div>
     );
 };
 
-export default AllItemShow;
+export default MyItem;

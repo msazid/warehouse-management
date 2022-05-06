@@ -31,11 +31,11 @@ const handleRegister = async (e) => {
         console.log(email,password,confirmPassword)
         if(password === confirmPassword){
             await createUserWithEmailAndPassword(email,password);
-            navigate('/')
         }
         else{
             alert("Password didn't match please try again")
         }
+        navigate('/')
     }
     return (
         <div>

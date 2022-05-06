@@ -1,34 +1,67 @@
 import React from 'react';
-import { useForm } from "react-hook-form";
+import { useAuthState } from 'react-firebase-hooks/auth';
+import auth from '../../Firebase/Firebase.init';
 
 const AddItem = () => {
-    const { register, handleSubmit } = useForm();
-    const onSubmit = data =>{ 
-        console.log(data)
+    const [user] = useAuthState(auth);
+
+    const onSubmit = event => {
+        event.preventDefault()
+
+        const email = user.email ;
+        const name = event.target.name.value;
+        const description = event.target.description.value;
+        const quantity = event.target.quantity.value;
+        const price = event.target.price.value;
+        const picture = event.target.picture.value;
+
+        const item = {email,name,picture,description,quantity,price}
+
         const url = 'http://localhost:5000/item'
-        fetch(url,{
-            method:'POST',
-            headers:{
-                'content-type':'application/json'
+        fetch(url, {
+            method: 'POST',
+            headers: {
+                'content-type': 'application/json'
             },
-            body:JSON.stringify(data)
+            body: JSON.stringify(item)
         })
-        .then(res => res.json())
-        .then(result => {
-            console.log(result);
-        }) 
+            .then(res => res.json())
+            .then(result => {
+                event.target.reset();
+                console.log(result);
+            })
     };
 
     return (
         <div className='w-50 mx-auto'>
-        <h1>Add New Item</h1>
-        <form className='d-flex flex-column' onSubmit={handleSubmit(onSubmit)}>
-            <input required placeholder='item name' {...register("name")} />
-            <input className='my-2' required placeholder='picture url' {...register("picture")} />
-            <textarea rows="2" cols="23" placeholder='description' {...register("description")} />
-            <input className='my-2' required type="number" {...register("quantity")} />
-            <input  className='my-2' type="submit" />
-        </form>
+            <h1>Add New Item</h1>
+            <form className='text-start' onSubmit={onSubmit}>
+                <div class="mb-3">
+                    <label for="exampleInputPassword1" class="form-label">Email</label>
+                    <input type="email" readOnly value={user.email} name='email' class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp"/>
+                </div>
+                <div class="mb-3">
+                    <label for="exampleInputPassword1" class="form-label">Product Name</label>
+                    <input type="text" name='name' class="form-control"/>
+                </div>
+                <div class="mb-3">
+                    <label for="exampleInputPassword1" class="form-label">Describe</label>
+                    <textarea name="description" class="form-control" cols="3" rows="2"></textarea>
+                </div>
+                <div class="mb-3">
+                    <label for="exampleInputPassword1" class="form-label">Quantity</label>
+                    <input type="number" class="form-control" name="quantity"/>
+                </div>
+                <div class="mb-3">
+                    <label for="exampleInputPassword1" class="form-label">Price</label>
+                    <input type="number" class="form-control" name="price"/>
+                </div>
+                <div class="mb-3">
+                    <label for="exampleInputPassword1" class="form-label">Picture Url</label>
+                    <input type="text" class="form-control" name="picture"/>
+                </div>
+                <button type="submit" class="btn btn-primary">Submit</button>
+            </form>
         </div>
     );
 };
