@@ -1,8 +1,9 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import GoogleButton from 'react-google-button';
 import { Link, useNavigate } from 'react-router-dom';
 import auth from '../../../Firebase/Firebase.init';
 import { useCreateUserWithEmailAndPassword } from 'react-firebase-hooks/auth';
+
 
 
 const Register = () => {
@@ -12,34 +13,37 @@ const Register = () => {
         loading,
         error,
     ] = useCreateUserWithEmailAndPassword(auth);
-    const [showPass,setShowPass] = useState(false);   
-    const toggleNewPass = () =>{
+    const [showPass, setShowPass] = useState(false);
+
+    const toggleNewPass = () => {
         setShowPass(!showPass);
     }
-    const toggleConfirmPass = () =>{
+    const toggleConfirmPass = () => {
         setShowPass(!showPass);
     }
     const navigate = useNavigate()
 
-const handleRegister = async (e) => {
+    const handleRegister = async (e) => {
         e.preventDefault();
         const name = e.target.name.value;
         const email = e.target.email.value;
         const userName = e.target.username.value;
         const password = e.target.password.value;
         const confirmPassword = e.target.confirmpassword.value;
-        console.log(email,password,confirmPassword)
-        if(password === confirmPassword){
-            await createUserWithEmailAndPassword(email,password);
+        if (password === confirmPassword) {
+            await createUserWithEmailAndPassword(email, password);
         }
-        else{
+        else {
             alert("Password didn't match please try again")
         }
-        navigate('/')
+    }
+    if (user) {
+        navigate('/login')
     }
     return (
         <div>
             <div className="row container w-75 mx-auto my-3">
+
                 <div className="col-12 col-md-8 mx-auto">
                     <div className='w-100'>
                         <form onSubmit={handleRegister} className='text-start w-100 h-75'>
@@ -64,7 +68,7 @@ const handleRegister = async (e) => {
                                 <span className='text-start'>Confirm Password</span>
                                 <input type="password" name='confirmpassword' className="form-control" />
                             </div>
-                            <input type="submit" className="btn w-100" value=""/>
+                            <input type="submit" className="btn w-100" value="Register" />
                             <p className='mt-3'>Already have an account<Link className='ms-2' to='/login'>Login</Link></p>
                         </form>
                         <h4 className='text-center my-3'>Or</h4>

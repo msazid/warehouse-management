@@ -1,16 +1,18 @@
 import React, { useEffect, useState } from 'react';
 import { Link, useParams } from 'react-router-dom';
-import './style.css'
 
-const ManageItem = () => {
+const ManageMyItem = () => {
     const [detail, setDetail] = useState([]);
     const { id } = useParams();
     const url = (`http://localhost:5000/item/${id}`);
     useEffect(() => {
         fetch(url)
             .then(res => res.json())
-            .then(data => setDetail(data))
-    },[url]);
+            .then(data => {
+                console.log(data);
+                setDetail(data)
+            })
+    }, [url]);
     const handleDeliver = () => {
         let deliver = 1;
         let quantityNumber = parseInt(detail.quantity)
@@ -52,6 +54,7 @@ const ManageItem = () => {
             quantity: quantity,
             company: detail.company,
             picture: detail.picture,
+            price: detail.price,
             description: detail.description
         }
         const url = `http://localhost:5000/item/${id}`
@@ -70,41 +73,39 @@ const ManageItem = () => {
                 }
             })
     }
-    return (
-        <>
-            <h1 className=' my-5 card-title'>Stock Update or Deliver here</h1>
-            <div className='d-md-flex justify-content-md-center align-items-center'>
-                <div className="card mb-3" style={{ maxWidth: '650px' }}>
-                    <div className="row g-0">
-                        <div className=" col-md-4  d-md-flex align-items-center">
-                            <img src={detail.picture} className="img-fluid rounded-start" alt="..." />
-                        </div>
-                        <div className="col-md-8">
-                            <div className="card-body">
-                                <h5 className="card-title">{detail.name}</h5>
-                                <p className="card-text text-start">{detail.description}</p>
-                                <p className="card-text text-start">
-                                <span className="card-text text-start"><strong>Brand:</strong> {detail.company}</span> <br />
-                                    <strong>Quantity:</strong> {detail.quantity} <span className="text-muted">piece</span></p>
 
-                                <div className='d-flex justify-content-center'>
-                                    <div className='d-flex'>
-                                        <button className='deliver-btn me-1' onClick={() => handleDeliver()}>Deliver</button>
-                                        <form onSubmit={newStock}>
-                                            <span className='d-flex'>
-                                                <input type="number" name='number' required /> <br />
-                                                <input className='btn ms-1' type="submit" value="Restock" /></span>
-                                        </form>
-                                    </div>
-                                </div>
-                                <Link className='myitems-link d-block py-1 mt-2 w-100' to='/manageitems'>Manage Items</Link>
-                            </div>
+    return (
+        <div>
+            <div className="container my-5 card border h-100">
+                <div className='row p-3 d-flex'>
+                    <div className="col-12 col-md-6">
+                        <img src={detail.picture} className='img-fluid' alt="itemPicture" />
+                    </div>
+                    <div className="col-12 col-md-6">
+                        <h1 className="card-title">{detail.name}</h1>
+                        <p className='card-text'>{detail.description}</p>
+                        <p><strong>Brand/Supplier :</strong> <span className="card-text">{detail.company}</span></p>
+                        <p><strong>Price:</strong> <span className="card-text">{detail.price}</span></p>
+                        <p><strong>Quantity:</strong> <span className="card-text">{detail.quantity}</span></p>
+                        <div className='d-flex justify-content-center'>
+                        <div className="d-flex">
+                            <button className='deliver-btn me-1' onClick={() => handleDeliver()}>Deliver</button>
+                            <form onSubmit={newStock}>
+                                <span className='d-flex'>
+                                    <input type="number" name='number' required /> <br />
+                                    <input className='btn ms-1' type="submit" value="Restock" /></span>
+                            </form>
                         </div>
+                        </div>
+                        <Link className='myitems-link d-block py-1 mt-2 w-100' to='/manageitems'>Manage Items</Link>
                     </div>
                 </div>
             </div>
-        </>
+
+
+
+        </div>
     );
 };
 
-export default ManageItem;
+export default ManageMyItem;

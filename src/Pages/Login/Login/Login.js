@@ -1,20 +1,24 @@
 import React from 'react';
 import { useSignInWithEmailAndPassword } from 'react-firebase-hooks/auth';
 import GoogleButton from 'react-google-button';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import deliveryPic from '../../../Assets/Image/delivery.jpg'
 import auth from '../../../Firebase/Firebase.init';
 const Login = () => {
+    const navigate = useNavigate();
+    const location = useLocation();
+    let from = location.state?.from?.pathname || '/'
     const [
         signInWithEmailAndPassword,
         user,
         loading,
         error,
     ] = useSignInWithEmailAndPassword(auth);
-    const navigate = useNavigate()
+
     if(user){
-        navigate('/')
+        navigate(from,{replace:true});
     }
+
     const handleLogin = (e) => {
         e.preventDefault();
         const email = e.target.email.value;
@@ -30,7 +34,7 @@ const Login = () => {
                 </div>
                 <div className="col-12 col-md-6 d-flex align-items-center">
                     <div className='w-100'>
-                        <form className='w-100 h-75' onClick={handleLogin}>
+                        <form className='w-100 h-75' onSubmit={handleLogin}>
                             <h3>Login</h3>
                             <div className="my-3">
                                 <span className="text-start">Email</span>

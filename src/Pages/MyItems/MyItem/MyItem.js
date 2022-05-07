@@ -1,11 +1,11 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
 
-const MyItem = ({item,deleteItem}) => {
+const MyItem = ({item}) => {
 
     const navigate = useNavigate()
     const navigateToPage = (id) => {
-        navigate(`/manageitem/${id}`)
+        navigate(`/managemyitem/${id}`)
     }
 
     return (

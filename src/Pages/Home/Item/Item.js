@@ -1,5 +1,5 @@
 import React from 'react';
-import { Link, useNavigate } from 'react-router-dom';
+import {useNavigate } from 'react-router-dom';
 import './Item.css'
 
 const Item = ({ item }) => {
@@ -14,8 +14,8 @@ const Item = ({ item }) => {
                 <div className="card-body">
                     <h5 className='card-title'>{item.name}</h5>
                     <p className="card-text">
-                        <span>Brand: {item.company}</span> <br />
-                        <span>Quantity: {item.quantity}</span>
+                        <span>Supplier: {item.company}</span> <br />
+                        <span>Quantity: {item.quantity} <span className='text-muted'>pis</span></span>
                     </p>
                     <button className='btn' onClick={() => navigateToPage(item._id)}>Stock Update</button>
                 </div>

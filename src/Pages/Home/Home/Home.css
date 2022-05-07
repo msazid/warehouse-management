@@ -1,32 +1,99 @@
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,800;1,800;1,900&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap');
 .hero-section{
     background-image: url('../../../Assets/Image/hero-banner.jpg');
     background-position: center;
     background-repeat: no-repeat;
     background-size: cover;
     height: 85vh;
-    background-color: rgba(0, 0, 0, 0.6);
+    background-color: rgba(0, 0, 0, 0.5);
     background-blend-mode: overlay;
 }
+.banner-title{
+    font-family: 'Playfair Display', serif;
+    font-size: 50px;
+    letter-spacing: .3px;
+    word-spacing: 5px;
+    line-height: 50px;
+    font-weight: 700;
+}
 .text-color{
-    color:#647b64;
+    color:wheat;
+    font-style: oblique;
 }
 
 .banner-text{
+    font-family: 'Poppins';
+    font-size: 16px;
+    font-weight: 300;
+    letter-spacing: .8px;
+    word-spacing: 2px;
+    line-height: 25px;
+    color: whitesmoke !important;
     text-align: center;
 }
-.btn-banner{
-    color: whitesmoke;
+.btn-banner {
+    position: relative;
+    margin: auto;
+    padding: 12px 18px;
+    transition: all 0.2s ease;
+    border: none;
     background: none;
-    border: 2px solid whitesmoke;
-    font-weight: 500;
-    padding: 5px;
     text-decoration: none;
-    transition: .3s all;
-}
-.btn-banner:hover{
-    color: white; 
-    background-color: #647b64;
-    border: 2px solid #647b64;
-    transition: .3s all;
-
-}
+   
+   }
+   
+   .btn-banner:before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    display: block;
+    border-radius: 50px;
+    background: #647b64;
+    width: 45px;
+    height: 45px;
+    transition: all 0.3s ease;
+   }
+   
+   .btn-banner span {
+    position: relative;
+    font-family: 'Roboto';
+    letter-spacing: .03em;
+    font-weight: 500;
+    font-size: 18px;
+    color: wheat;
+   }
+   
+   .btn-banner svg {
+    position: relative;
+    top: 0;
+    margin-left: 10px;
+    fill: none;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+    stroke: wheat;
+    stroke-width: 2;
+    transform: translateX(-5px);
+    transition: all 0.3s ease;
+   }
+   
+   .btn-banner:hover:before {
+    width: 100%;
+    background: #647b64;
+   }
+   
+   .btn-banner:hover svg {
+    transform: translateX(0);
+   }
+   
+   .btn-banner:active {
+    transform: scale(0.95);
+   }
+   .home-title{
+       font-family: 'Playfair Display';
+       font-weight:400;
+       letter-spacing:.8px;
+       word-spacing: .5px;
+       color: #092532;
+       font-style: oblique;
+   }

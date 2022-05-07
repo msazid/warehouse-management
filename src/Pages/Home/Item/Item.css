@@ -1,18 +1,23 @@
 .card{
     border: none;
+    font-family: 'Poppins';
+}
+.card:hover{
     box-shadow: rgba(0, 0, 0, 0.08) 0px 4px 12px;
 }
 .card-title{
-    color: #647b64;
+    color: #002F35;
+    font-family:'Playfair' ;
+    font-size: 25px;
 }
 .btn{
     color: white;    
     background: linear-gradient(102.3deg, #647B64 -4.62%, #66AC66 178.22%), linear-gradient(102.3deg, #0BB1E3 -4.62%, #0F2976 178.22%), #0E70AF;
-    border:2px solid #647B64;
+    border:2px solid #002F35;
 }
 .btn:hover{
     background: white ;    
-    color: #647B64 !important;
-    border: 2px solid #647B64;
+    color: #002F35 !important;
+    border: 2px solid #002F35;
 
 }

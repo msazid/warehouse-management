@@ -10,7 +10,7 @@ const Items = () => {
                 {
                     items.slice(0,6).map(item => <Item key={item._id} item={item}></Item>)
                 }
-                <Link className='py-2 my-3 mx-auto myitems-link' to='/myitems'>My Items List</Link>
+                <Link className='py-2 my-3 mx-auto myitems-link' to='/allitemsshow'>All Items List</Link>
         </div>
     );
 };
