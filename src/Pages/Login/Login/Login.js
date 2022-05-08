@@ -1,5 +1,5 @@
 import React, { useRef } from 'react';
-import { useSignInWithEmailAndPassword ,useSendPasswordResetEmail} from 'react-firebase-hooks/auth';
+import { useSignInWithEmailAndPassword ,useSendPasswordResetEmail, useSignInWithGoogle} from 'react-firebase-hooks/auth';
 import GoogleButton from 'react-google-button';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import deliveryPic from '../../../Assets/Image/delivery.jpg'
@@ -19,10 +19,11 @@ const Login = () => {
         loading,
         error,
     ] = useSignInWithEmailAndPassword(auth);
+    const [signInWithGoogle, googleUser, googleLoading, googleError] = useSignInWithGoogle(auth);
 
     const [sendPasswordResetEmail , sending] = useSendPasswordResetEmail(auth);
 
-    if (user) {
+    if (user || googleUser) {
         navigate(from, { replace: true });
     }
 
@@ -32,11 +33,12 @@ const Login = () => {
         const password = userPassword.current.value;
         signInWithEmailAndPassword(email, password)
     }
-    if(sending || loading){
+    if(sending || loading || googleLoading){
         <Loading></Loading>
     }
-    if(error){
-        toast.error(`${error.message}`,{id:'error'})
+    let errorText;
+    if(error || googleError){
+      errorText =  <p>{error?.message} {googleError?.message}</p>
     }
     const resetPassword = async () =>{
         const email = userEmail.current.value;
@@ -49,7 +51,7 @@ const Login = () => {
         <div>
             <div className="row container w-75 mx-auto my-3">
 
-                <div className="col-12 col-md-6">
+                <div className="d-md-block d-none col-md-6">
                     <img className='img-fluid' src={deliveryPic} alt="" />
                 </div>
                 <div className="col-12 col-md-6 d-flex align-items-center">
@@ -57,20 +59,22 @@ const Login = () => {
                         <form className='w-100 h-75' onSubmit={handleLogin}>
                             <h3>Login</h3>
                             <div className="my-3">
-                                <span className="text-start">Email</span>
+                                <span className="text-start d-block">Email</span>
                                 <input required type="email" ref={userEmail} className="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" />
                             </div>
                             <div className="mb-3">
-                                <span className='text-start'>Password</span>
+                                <span className='text-start d-block text-start'>Password</span>
                                 <input required type="password" ref={userPassword} className="form-control" id="exampleInputPassword1" />
                             </div>
                             <button type="submit" className="btn w-100">Login</button>
+                            {errorText}
                             <p className='mt-3'>New here please<Link className='ms-2' to='/register'>Register</Link></p>
                         </form>
-                        <div className="text-center"><button className="text-decoration-none text-primary" onClick={resetPassword}>Forget Password ?</button></div>
+
+                        <div className="text-center"><button className="text-primary bg-light border-0" onClick={resetPassword}>Forget Password ?</button></div>
                         <h4 className='text-center my-3'>Or</h4>
                         <GoogleButton className='w-100'
-                            onClick={() => { console.log('Google button clicked') }}
+                            onClick={() => { signInWithGoogle() }}
                         />
 
                     </div>

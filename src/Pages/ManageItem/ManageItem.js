@@ -52,7 +52,7 @@ const ManageItem = () => {
             quantity: quantity,
             company: detail.company,
             picture: detail.picture,
-            description: detail.description
+            description: detail.description,
         }
         const url = `https://afternoon-harbor-83297.herokuapp.com/item/${id}`
         fetch(url, {

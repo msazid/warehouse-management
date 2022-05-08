@@ -43,9 +43,9 @@ const MyItems = () => {
     }
 
     return (
-        <div className='container'>
+        <div className='container my-5'>
             <h5 className='py-5'>This All items are added by this id : <span className='text-primary'>{user?.email}</span></h5>
-            <table className='table border'>
+            <table className=' table border'>
                 <thead>
                     <tr>
                         <th scope="col">Name</th>

@@ -36,7 +36,7 @@ const AddItem = () => {
 
 
     return (
-        <div className='w-50 mt-5 mx-auto'>
+        <div className='w-50 my-5 mx-auto'>
             <h1 className='p-3'>Add New Item</h1>
             <form className='text-start' onSubmit={onSubmit}>
                 <div class="mb-3">

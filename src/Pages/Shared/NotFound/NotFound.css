@@ -1,0 +1,18 @@
+.not-found-text-1{
+    font-size: 180px;
+    font-family: 'Playfair Display';
+    font-weight: 300;
+    font-style: italic;
+    color: #092532;
+}
+.not-found-text-2{
+    font-size: 30px;
+    font-family: 'Poppins';
+}
+.not-found-home-link{
+    text-decoration: none;
+    font-size: 20px;
+    padding: 5px;
+    font-style: italic;
+    font-family: 'Playfair Display';
+}

@@ -1,7 +1,7 @@
 import GoogleButton from 'react-google-button';
 import { Link, useNavigate } from 'react-router-dom';
 import auth from '../../../Firebase/Firebase.init';
-import { useCreateUserWithEmailAndPassword } from 'react-firebase-hooks/auth';
+import { useCreateUserWithEmailAndPassword, useSignInWithGoogle } from 'react-firebase-hooks/auth';
 import { toast } from 'react-hot-toast';
 import Loading from '../../Shared/Loading/Loading';
 
@@ -14,12 +14,13 @@ const Register = () => {
         user,
         loading,error
     ] = useCreateUserWithEmailAndPassword(auth , {sendEmailVerification:true});
+    const [signInWithGoogle, googleUser, googleLoading, googleError] = useSignInWithGoogle(auth);
 
     const navigate = useNavigate()
-    if(loading){
+    if(loading || googleLoading){
         <Loading></Loading>
     }
-    if(error){
+    if(error || googleError){
         toast.error(`${error.message}`,{id:'error'})
     }
     const handleRegister = async (e) => {
@@ -31,13 +32,14 @@ const Register = () => {
         const confirmPassword = e.target.confirmpassword.value;
         if (password === confirmPassword) {
             await createUserWithEmailAndPassword(email, password);
-            toast(`Signup Success`,{id:'success'})
+            toast.success(`Signup Success`,{id:'success'})
+            toast.success(`Verify email sent`,{id:'verify'})
         }
         else {
             alert("Password didn't match please try again")
         }
     }
-    if (user) {
+    if (user || googleUser) {
         navigate('/')
     }
     return (
@@ -73,7 +75,7 @@ const Register = () => {
                         </form>
                         <h4 className='text-center my-3'>Or</h4>
                         <GoogleButton className='w-100'
-                            onClick={() => { console.log('Google button clicked') }}
+                            onClick={() => { signInWithGoogle() }}
                         />
 
                     </div>

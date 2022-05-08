@@ -54,7 +54,7 @@ const Home = () => {
                     clickable: true,
                 }}
                 modules={[Pagination]}
-                className="container py-3 mySwiper"
+                className="container py-3 my-5 mySwiper"
             >
                 <SwiperSlide>
                     <img src={img1} className='w-50 h-50' alt="" />
@@ -75,6 +75,31 @@ const Home = () => {
                     <img src={img6} className='w-50 h-50' alt="" />
                 </SwiperSlide>
             </Swiper>
+            <div className="container my-3">
+                <div className="row">
+                    <div className="col-12 col-md-6">
+                        <h1 className='home-title text-start py-2'>Our office Location</h1>
+                        <p className="home-text text-start">
+                        <strong className='news-text'>Address:</strong> Mirpur , Dhaka-1207
+                        </p>
+                        <p className="home-text text-start">
+                        <strong className='news-text'>Phone:</strong> +8801926045689
+                        </p>
+                        <p className="home-text text-start">
+                        <strong className='news-text'>Address:</strong> Mirpur , Dhaka-1207
+                        </p>
+                    </div>
+                    <div className="col-12 col-md-6">
+                        <form className='card p-3'>
+                            <h1 className='home-title'>Facing Problems ?</h1>
+                            <h5 className='home-text'>Give us your valuable recommendations</h5>
+                            <input placeholder='email' className='form-control my-2 border-0 border-bottom' type="email" />
+                            <textarea placeholder='your report' className='form-control border-0 border-bottom'  rows="3"></textarea>
+                            <input className='btn my-3' type="submit" value="Submit" />
+                        </form>
+                    </div>
+                </div>
+            </div>
            </div>
     );
 };

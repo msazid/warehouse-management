@@ -14,6 +14,8 @@ import MyItems from './Pages/MyItems/MyItems/MyItems';
 import { Toaster } from 'react-hot-toast';
 import ManageMyItem from './Pages/MyItems/ManageMyItem/ManageMyItem';
 import RequireAuth from './Pages/Login/RequireAuth/RequireAuth';
+import VerifyPage from './Pages/Login/VerifyPage/VerifyPage';
+import Footer from './Pages/Shared/Footer/Footer';
 
 
 function App() {
@@ -37,7 +39,6 @@ function App() {
           <RequireAuth>
             <ManageItem/>
           </RequireAuth>}/>
-
           <Route path='/manageitems' element={
           <RequireAuth>
             <ManageItems/>
@@ -50,8 +51,10 @@ function App() {
           <RequireAuth>
             <MyItems/>
           </RequireAuth>}/>
+          <Route path='/verify' element={<VerifyPage/>}/>
           <Route path='*' element={<NotFound/>}/>
        </Routes>
+       <Footer></Footer>
     </div>
   );
 }
