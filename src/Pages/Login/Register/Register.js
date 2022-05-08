@@ -1,8 +1,10 @@
-import React, { useEffect, useState } from 'react';
 import GoogleButton from 'react-google-button';
 import { Link, useNavigate } from 'react-router-dom';
 import auth from '../../../Firebase/Firebase.init';
 import { useCreateUserWithEmailAndPassword } from 'react-firebase-hooks/auth';
+import { toast } from 'react-hot-toast';
+import Loading from '../../Shared/Loading/Loading';
+
 
 
 
@@ -10,19 +12,16 @@ const Register = () => {
     const [
         createUserWithEmailAndPassword,
         user,
-        loading,
-        error,
-    ] = useCreateUserWithEmailAndPassword(auth);
-    const [showPass, setShowPass] = useState(false);
+        loading,error
+    ] = useCreateUserWithEmailAndPassword(auth , {sendEmailVerification:true});
 
-    const toggleNewPass = () => {
-        setShowPass(!showPass);
-    }
-    const toggleConfirmPass = () => {
-        setShowPass(!showPass);
-    }
     const navigate = useNavigate()
-
+    if(loading){
+        <Loading></Loading>
+    }
+    if(error){
+        toast.error(`${error.message}`,{id:'error'})
+    }
     const handleRegister = async (e) => {
         e.preventDefault();
         const name = e.target.name.value;
@@ -32,13 +31,14 @@ const Register = () => {
         const confirmPassword = e.target.confirmpassword.value;
         if (password === confirmPassword) {
             await createUserWithEmailAndPassword(email, password);
+            toast(`Signup Success`,{id:'success'})
         }
         else {
             alert("Password didn't match please try again")
         }
     }
     if (user) {
-        navigate('/login')
+        navigate('/')
     }
     return (
         <div>

@@ -4,7 +4,7 @@ import { Link, useParams } from 'react-router-dom';
 const ManageMyItem = () => {
     const [detail, setDetail] = useState([]);
     const { id } = useParams();
-    const url = (`http://localhost:5000/item/${id}`);
+    const url = (`https://afternoon-harbor-83297.herokuapp.com/item/${id}`);
     useEffect(() => {
         fetch(url)
             .then(res => res.json())
@@ -26,7 +26,7 @@ const ManageMyItem = () => {
             picture: detail.picture,
             description: detail.description
         }
-        const url = `http://localhost:5000/item/${id}`
+        const url = `https://afternoon-harbor-83297.herokuapp.com/item/${id}`
         fetch(url, {
             method: 'PUT',
             headers: {
@@ -57,7 +57,7 @@ const ManageMyItem = () => {
             price: detail.price,
             description: detail.description
         }
-        const url = `http://localhost:5000/item/${id}`
+        const url = `https://afternoon-harbor-83297.herokuapp.com/item/${id}`
         fetch(url, {
             method: 'PUT',
             headers: {
@@ -88,16 +88,16 @@ const ManageMyItem = () => {
                         <p><strong>Price:</strong> <span className="card-text">{detail.price}</span></p>
                         <p><strong>Quantity:</strong> <span className="card-text">{detail.quantity}</span></p>
                         <div className='d-flex justify-content-center'>
-                        <div className="d-flex">
-                            <button className='deliver-btn me-1' onClick={() => handleDeliver()}>Deliver</button>
-                            <form onSubmit={newStock}>
-                                <span className='d-flex'>
-                                    <input type="number" name='number' required /> <br />
-                                    <input className='btn ms-1' type="submit" value="Restock" /></span>
-                            </form>
+                            <div className="d-flex">
+                                <button className='deliver-btn me-1' onClick={() => handleDeliver()}>Deliver</button>
+                                <form onSubmit={newStock}>
+                                    <span className='d-flex'>
+                                        <input type="number" name='number' required /> <br />
+                                        <input className='btn ms-1' type="submit" value="Restock" /></span>
+                                </form>
+                            </div>
                         </div>
-                        </div>
-                        <Link className='myitems-link d-block py-1 mt-2 w-100' to='/manageitems'>Manage Items</Link>
+                        <Link className='myitems-link d-block py-1 mt-2 w-100' to='/myitems'>Manage Items</Link>
                     </div>
                 </div>
             </div>

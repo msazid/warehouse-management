@@ -5,12 +5,12 @@ import './style.css'
 const ManageItem = () => {
     const [detail, setDetail] = useState([]);
     const { id } = useParams();
-    const url = (`http://localhost:5000/item/${id}`);
+    const url = (`https://afternoon-harbor-83297.herokuapp.com/item/${id}`);
     useEffect(() => {
         fetch(url)
             .then(res => res.json())
             .then(data => setDetail(data))
-    },[url]);
+    }, [url]);
     const handleDeliver = () => {
         let deliver = 1;
         let quantityNumber = parseInt(detail.quantity)
@@ -24,7 +24,7 @@ const ManageItem = () => {
             picture: detail.picture,
             description: detail.description
         }
-        const url = `http://localhost:5000/item/${id}`
+        const url = `https://afternoon-harbor-83297.herokuapp.com/item/${id}`
         fetch(url, {
             method: 'PUT',
             headers: {
@@ -54,7 +54,7 @@ const ManageItem = () => {
             picture: detail.picture,
             description: detail.description
         }
-        const url = `http://localhost:5000/item/${id}`
+        const url = `https://afternoon-harbor-83297.herokuapp.com/item/${id}`
         fetch(url, {
             method: 'PUT',
             headers: {
@@ -84,7 +84,7 @@ const ManageItem = () => {
                                 <h5 className="card-title">{detail.name}</h5>
                                 <p className="card-text text-start">{detail.description}</p>
                                 <p className="card-text text-start">
-                                <span className="card-text text-start"><strong>Brand:</strong> {detail.company}</span> <br />
+                                    <span className="card-text text-start"><strong>Brand:</strong> {detail.company}</span> <br />
                                     <strong>Quantity:</strong> {detail.quantity} <span className="text-muted">piece</span></p>
 
                                 <div className='d-flex justify-content-center'>

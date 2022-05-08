@@ -15,6 +15,7 @@ import { Toaster } from 'react-hot-toast';
 import ManageMyItem from './Pages/MyItems/ManageMyItem/ManageMyItem';
 import RequireAuth from './Pages/Login/RequireAuth/RequireAuth';
 
+
 function App() {
   return (
     <div className="App">
@@ -22,7 +23,7 @@ function App() {
        <Toaster></Toaster>
        <Routes>
           <Route path='/' element={<Home/>}/>
-          <Route path='/blog' element={<Blogs/>}/>
+          <Route path='/blogs' element={<Blogs/>}/>
           <Route path='/login' element={<Login/>}/>
           <Route path='/register' element={<Register/>}/>
           <Route path='/managemyitem/:id' element={

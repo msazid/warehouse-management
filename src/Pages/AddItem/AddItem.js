@@ -8,7 +8,7 @@ const AddItem = () => {
 
     const onSubmit = event => {
         event.preventDefault()
-        const email = user.email ;
+        const email = user.email;
         const name = event.target.name.value;
         const description = event.target.description.value;
         const quantity = event.target.quantity.value;
@@ -16,9 +16,9 @@ const AddItem = () => {
         const picture = event.target.picture.value;
         const company = event.target.company.value;
 
-        const item = {email,name,picture,description,quantity,price,company}
+        const item = { email, name, picture, description, quantity, price, company }
 
-        const url = 'http://localhost:5000/item'
+        const url = 'https://afternoon-harbor-83297.herokuapp.com/item'
         fetch(url, {
             method: 'POST',
             headers: {
@@ -29,7 +29,7 @@ const AddItem = () => {
             .then(res => res.json())
             .then(result => {
                 event.target.reset();
-                toast.success(`Successfully added`,{ id:'success' })
+                toast.success(`Successfully added`, { id: 'success' })
                 console.log(result);
             })
     };
@@ -41,11 +41,11 @@ const AddItem = () => {
             <form className='text-start' onSubmit={onSubmit}>
                 <div class="mb-3">
                     <label for="exampleInputPassword1" class="form-label">Email</label>
-                    <input type="email" readOnly value={user?.email} name='email' class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp"/>
+                    <input type="email" readOnly value={user?.email} name='email' class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" />
                 </div>
                 <div class="mb-3">
                     <label for="exampleInputPassword1" class="form-label">Product Name</label>
-                    <input type="text" required name='name' class="form-control"/>
+                    <input type="text" required name='name' class="form-control" />
                 </div>
                 <div class="mb-3">
                     <label for="exampleInputPassword1" class="form-label">Describe</label>
@@ -53,19 +53,19 @@ const AddItem = () => {
                 </div>
                 <div class="mb-3">
                     <label for="exampleInputPassword1" class="form-label">Quantity</label>
-                    <input type="number" required class="form-control" name="quantity"/>
+                    <input type="number" required class="form-control" name="quantity" />
                 </div>
                 <div class="mb-3">
                     <label for="exampleInputPassword1" class="form-label">Price</label>
-                    <input type="number" required class="form-control" name="price"/>
+                    <input type="number" required class="form-control" name="price" />
                 </div>
                 <div class="mb-3">
                     <label for="exampleInputPassword1" class="form-label">Picture Url</label>
-                    <input type="text" required class="form-control" name="picture"/>
+                    <input type="text" required class="form-control" name="picture" />
                 </div>
                 <div class="mb-3">
                     <label for="exampleInputPassword1" class="form-label">Brand/supplier</label>
-                    <input type="text" required class="form-control" name="company"/>
+                    <input type="text" required class="form-control" name="company" />
                 </div>
                 <button type="submit" class="btn btn-primary">Submit</button>
             </form>

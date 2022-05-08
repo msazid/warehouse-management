@@ -1,12 +1,17 @@
-import React from 'react';
-import { useSignInWithEmailAndPassword } from 'react-firebase-hooks/auth';
+import React, { useRef } from 'react';
+import { useSignInWithEmailAndPassword ,useSendPasswordResetEmail} from 'react-firebase-hooks/auth';
 import GoogleButton from 'react-google-button';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import deliveryPic from '../../../Assets/Image/delivery.jpg'
 import auth from '../../../Firebase/Firebase.init';
+import toast from 'react-hot-toast';
+import Loading from '../../Shared/Loading/Loading';
+
 const Login = () => {
     const navigate = useNavigate();
     const location = useLocation();
+    const userEmail = useRef('')
+    const userPassword = useRef('')
     let from = location.state?.from?.pathname || '/'
     const [
         signInWithEmailAndPassword,
@@ -15,15 +20,30 @@ const Login = () => {
         error,
     ] = useSignInWithEmailAndPassword(auth);
 
-    if(user){
-        navigate(from,{replace:true});
+    const [sendPasswordResetEmail , sending] = useSendPasswordResetEmail(auth);
+
+    if (user) {
+        navigate(from, { replace: true });
     }
 
     const handleLogin = (e) => {
         e.preventDefault();
-        const email = e.target.email.value;
-        const password = e.target.password.value;
+        const email = userEmail.current.value;
+        const password = userPassword.current.value;
         signInWithEmailAndPassword(email, password)
+    }
+    if(sending || loading){
+        <Loading></Loading>
+    }
+    if(error){
+        toast.error(`${error.message}`,{id:'error'})
+    }
+    const resetPassword = async () =>{
+        const email = userEmail.current.value;
+        if(email){
+            await sendPasswordResetEmail(email);
+            toast.success(`Mail send successfully`,{id:'success'})
+        }
     }
     return (
         <div>
@@ -38,16 +58,16 @@ const Login = () => {
                             <h3>Login</h3>
                             <div className="my-3">
                                 <span className="text-start">Email</span>
-                                <input required type="email" name='email' className="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" />
+                                <input required type="email" ref={userEmail} className="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" />
                             </div>
                             <div className="mb-3">
                                 <span className='text-start'>Password</span>
-                                <input required type="password" name='password' className="form-control" id="exampleInputPassword1" />
+                                <input required type="password" ref={userPassword} className="form-control" id="exampleInputPassword1" />
                             </div>
-                            <span className='d-block mb-3'>Forget your password ?</span>
                             <button type="submit" className="btn w-100">Login</button>
                             <p className='mt-3'>New here please<Link className='ms-2' to='/register'>Register</Link></p>
                         </form>
+                        <div className="text-center"><button className="text-decoration-none text-primary" onClick={resetPassword}>Forget Password ?</button></div>
                         <h4 className='text-center my-3'>Or</h4>
                         <GoogleButton className='w-100'
                             onClick={() => { console.log('Google button clicked') }}
